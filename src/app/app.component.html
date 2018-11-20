@@ -25,7 +25,7 @@
                  </select> 
                 </div>  
                 <button class="btn btn-success"
-                (click)="showAddUserForm()">Add Team </button>
+                (click)="showAddTeamForm()">Add Team </button>
             </div>  
         </div> 
         <div class="box-header with-border">  
@@ -41,28 +41,39 @@
           </select>
 
         </div>  
-        <button class="btn btn-success" [disabled]="!noTeamSelected()" data-toggle="tooltip"
-                (click)="showAddUserForm()">Add Employee </button>
+        <button class="btn btn-success" [disabled]="!noTeamSelected()" 
+                (click)="showAddEmpForm()">Add Employee </button>
 </div>  
 </div> 
 
-<!-- <form *ngIf="userForm">
+<form *ngIf="teamForm">
   <h2>Add New Team</h2>
   <p>Team: <input type="text" 
                          name="Team"
-                         [(ngModel)]="newUser.Team" /></p>
-   <p>Name: <input type="text"
-                               name="name"
-                               [(ngModel)]="newUser.name" /></p> 
-  <p>
+                         [(ngModel)]="newTeam.Team" /></p>
+   <p>
     <button type="button"
                  class="btn btn-primary"
-                 (click)="saveUser(newTeam)">Submit</button>
+                 (click)="saveTeam(newTeam)">Submit</button> 
     <button type="button"
                  class="btn btn-warning"
-                 (click)="cancelNewUser()">Cancel</button> 
-  </p>
- </form> -->
+                 (click)="cancelNewTeam()">Cancel</button> 
+  </p> 
+ </form>
+ <form *ngIf="empForm">
+  <h2>Add New Employee</h2>
+  <p>Employee: <input type="text" 
+                         name="Emp"
+                         [(ngModel)]="newEmp.Emp" /></p>
+   <p>
+    <button type="button"
+                 class="btn btn-primary"
+                 (click)="saveEmp(newEmp)">Submit</button> 
+    <button type="button"
+                 class="btn btn-warning"
+                 (click)="cancelNewEmp()">Cancel</button> 
+  </p> 
+ </form>
         </div>
         
         <div class="modal-footer">

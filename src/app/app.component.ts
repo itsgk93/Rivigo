@@ -11,10 +11,12 @@ public data:any;
 public teamId: any; 
 public EmpList: any;
 public empId: any;
-users: any;
 newTeam:any={};
-userForm:boolean=false;
-isNewUser:boolean;
+newEmp:any={};
+teamForm:boolean=false;
+empForm:boolean=false;
+isNewTeam:boolean;
+isNewEmp:boolean;
 isTeamSelected:boolean=false;
 isEmpSelected:boolean=false;
 
@@ -75,16 +77,48 @@ constructor(  ) {
     this.isEmpSelected=!this.isEmpSelected;
     this.isTeamSelected=!this.isTeamSelected;
   }
-  
-  // showAddUserForm(){
 
-  //   // resets form if edited user
-  //   if(this.users.length){
-  //     this.newTeam={};
-  //   }
-  //   this.userForm=true;
-  //   this.isNewUser=true;
+  showAddTeamForm(){
 
-  // }
+    // resets form if edited user
+    // if(this.users.length){
+    //   this.newTeam={};
+    // }
+    this.teamForm=true;
+    this.isNewTeam=true;
+
+  }
+  saveTeam=function(){
+    if(this.isNewTeam){
+      //add a new user
+      alert("New Team is added");
+    }
+    this.userForm=false;
+  }
+  cancelNewTeam(){
+    this.newTeam={};
+    this.teamForm=false;
+  }
+  showAddEmpForm(){
+
+    // resets form if edited user
+    // if(this.users.length){
+    //   this.newTeam={};
+    // }
+    this.empForm=true;
+    this.isNewEmp=true;
+
+  }
+  saveEmp=function(){
+    if(this.isNewEmp){
+      //add a new user
+      alert("New Employee is added");
+    }
+    this.empForm=false;
+  }
+  cancelNewEmp(){
+    this.newEmp={};
+    this.empForm=false;
+  }
   }  
   
