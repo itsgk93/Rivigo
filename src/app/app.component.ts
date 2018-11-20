@@ -50,57 +50,34 @@ constructor(myElement: ElementRef) {
     {    
       Team: 'Sales',    
       employees: ['Ankit Tiwari','Ramesh Kumar']    
-    }  
+    }
   ]    
 
-  
-  for (var j = 0; j < this.nameList.length; j++){
-    this.teams.push(this.nameList[j].Team);
-  }
-  }
+}
    
   
-  //  for (let item of items) {
-  //   console.log(item); // Will display contents of the object inside the array
-
   filter() {
-    
-    if (this.query !== ""){
-          this.filteredList = this.teams.filter(function(el){
-          //return !this.query || (el ? ('' + el).toLowerCase().indexOf(this.query) > -1 : false);
-         return (el.toLowerCase().substr(0, this.query.length) ==
+  if (this.query !== ""){
+          this.filteredList = this.nameList.filter(function(el){
+         return (el.Team.toLowerCase().substr(0, this.query.length) ==
            this.query.toLowerCase()) == true;
-            //return el.toLowerCase().search(this.query.toLowerCase()) > -1;
         }.bind(this));
-        
-    }else{
+   }
+   else{
         this.filteredList = [];
     }
 }
  
 select(item){
     this.query = item;
-    console.log(item);
+    console.log(JSON.stringify(item));
     this.filteredList = [];
-    // this.EmpList = this.nameList.filter((item)=> this.nameList['Team'] == item);
-      
-    
-    //     this.EmpList = this.nameList.filter(function(item) { 
-      
-    //   return this.nameList["Team"] == item});
-    
-    //      console.log(JSON.stringify(this.EmpList));
+    this.EmpList = item.employees;
+    console.log(JSON.stringify(this.EmpList))
     this.isTeamSelected=true;    
-}
-  // selectTeam()
-  // {
-  // console.log(JSON.stringify(this.item));
-  // this.EmpList = this.teamId.employees;
-  // console.log(JSON.stringify(this.EmpList));
-  // this.isTeamSelected=true;
-  // } 
+} 
  
-  filter2() {
+ filter2() {
     
     if (this.query2 !== ""){
           this.filteredList2 = this.EmpList.filter(function(el){
@@ -121,10 +98,7 @@ select(item){
     this.filteredList2 = [];
     this.isEmpSelected=true;    
 }
-  selectEmployee(){
-    console.log(JSON.stringify(this.empId));
-    this.isEmpSelected=true;
-  } 
+  
   noneSelected(){
     return (this.isTeamSelected && this.isEmpSelected);
   }
@@ -149,10 +123,6 @@ select(item){
 
   showAddTeamForm(){
 
-    // resets form if edited user
-    // if(this.users.length){
-    //   this.newTeam={};
-    // }
     this.teamForm=true;
     this.isNewTeam=true;
 
@@ -161,7 +131,6 @@ select(item){
     if(this.isNewTeam){
       //add a new user
       this.nameList.push({ Team : newTeam.Team , employees:[] });
-      this.teams.push(newTeam.Team);
       console.log(newTeam.Team);
       console.log(JSON.stringify(this.nameList));
       alert("New Team is added");

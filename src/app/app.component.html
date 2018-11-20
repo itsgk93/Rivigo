@@ -24,14 +24,13 @@
                       </option>  
                  </select>  -->
                  
-                    <div class="col-md-3">
-                        <!-- <label for="teams">Select Team</label> -->
-                      <input id="teams" type="text" class="validate filter-input" [(ngModel)]=query (keyup)=filter()>
+                    <div class="col-md-3" >
+                      <input id="teams" type="text" value=" " class="validate filter-input" [(ngModel)]=query (keyup)=filter()>
                     
                     <div class="col-md-3" *ngIf="filteredList.length > 0">
-                        <ul *ngFor="let item of filteredList" type="None">
+                        <ul *ngFor="let item of filteredList" type="None" >
                             <li >
-                                <a (click)="select(item)">{{item}}</a>
+                                <a (click)="select(item)">{{item.Team}}</a>
                             </li>
                         </ul>
                     </div>
