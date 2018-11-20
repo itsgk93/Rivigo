@@ -16,13 +16,27 @@
           <div class="box-header with-border" >  
             <div class="form-group voffset row">  
                 <label for="" class="vertical-label col-md-3 text-left"> Select Team</label>  
-                <div class="col-md-3" class="float">  
-                    <select id="Id" #Id="ngModel" class="hideLabel form-control" [(ngModel)]="teamId"  (change)="selectTeam();">  
+                <div class="col-md-3" class="float"> 
+                    <!-- <select id="Id" #Id="ngModel" class="hideLabel form-control" [(ngModel)]="teamId"  (change)="selectTeam();">  
                       <option value="" disabled="true" [selected]="">--Please select Team--</option>
                          <option [ngValue]="k" *ngFor="let k of nameList">  
                              {{k.Team}}  
                       </option>  
-                 </select> 
+                 </select>  -->
+                 
+                    <div class="col-md-3">
+                        <!-- <label for="teams">Select Team</label> -->
+                      <input id="teams" type="text" class="validate filter-input" [(ngModel)]=query (keyup)=filter()>
+                    
+                    <div class="col-md-3" *ngIf="filteredList.length > 0">
+                        <ul *ngFor="let item of filteredList" type="None">
+                            <li >
+                                <a (click)="select(item)">{{item}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                  </div>  
+
                 </div>  
                 <button class="btn btn-success"
                 (click)="showAddTeamForm()">Add Team </button>
@@ -33,13 +47,23 @@
            
         <label for="" class="vertical-label col-md-3 text-left"> Select Employee</label>  
         <div class="col-md-3" class="float" >  
-         <select id="Id" #Id="ngModel" class="hideLabel form-control" [(ngModel)]="empId" (change)="selectEmployee()">  
+         <!-- <select id="Id" #Id="ngModel" class="hideLabel form-control" [(ngModel)]="empId" (change)="selectEmployee()">  
           <option value="" disabled="true" [selected]="">--Please select Employee--</option>  
               <option [ngValue]="k" *ngFor="let k of EmpList">  
            {{k}}  
               </option>  
-          </select>
-
+          </select> -->
+          <div class="col-md-3">
+          <input id="emps" type="text" class="validate filter-input" [(ngModel)]=query2 (keyup)=filter2()>
+                    
+          <div class="col-md-3" *ngIf="filteredList2.length > 0">
+              <ul *ngFor="let item2 of filteredList2" type="None">
+                  <li >
+                      <a (click)="select(item2)">{{item2}}</a>
+                  </li>
+              </ul>
+          </div>
+          </div>
         </div>  
         <button class="btn btn-success" [disabled]="!noTeamSelected()" 
                 (click)="showAddEmpForm()">Add Employee </button>
@@ -74,9 +98,6 @@
                  (click)="cancelNewEmp()">Cancel</button> 
   </p> 
  </form>
-        </div>
-        <div>
-          <app-autocomplete></app-autocomplete>
         </div>
         
         <div class="modal-footer">
