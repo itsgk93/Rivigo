@@ -1,0 +1,75 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+    Launch Modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Dashboard</h5>
+          <hr>       
+
+          <div class="box-header with-border" >  
+            <div class="form-group voffset row">  
+                <label for="" class="vertical-label col-md-3 text-left"> Select Team</label>  
+                <div class="col-md-3" class="float">  
+                    <select id="Id" #Id="ngModel" class="hideLabel form-control" [(ngModel)]="teamId"  (change)="selectTeam();">  
+                      <option value="" disabled="true" [selected]="">--Please select Team--</option>
+                         <option [ngValue]="k" *ngFor="let k of nameList">  
+                             {{k.Team}}  
+                      </option>  
+                 </select> 
+                </div>  
+                <button class="btn btn-success"
+                (click)="showAddUserForm()">Add Team </button>
+            </div>  
+        </div> 
+        <div class="box-header with-border">  
+          <div class="form-group voffset row">  
+           
+        <label for="" class="vertical-label col-md-3 text-left"> Select Employee</label>  
+        <div class="col-md-3" class="float" >  
+         <select id="Id" #Id="ngModel" class="hideLabel form-control" [(ngModel)]="empId" (change)="selectEmployee()">  
+          <option value="" disabled="true" [selected]="">--Please select Employee--</option>  
+              <option [ngValue]="k" *ngFor="let k of EmpList">  
+           {{k}}  
+              </option>  
+          </select>
+
+        </div>  
+        <button class="btn btn-success" [disabled]="!noTeamSelected()" data-toggle="tooltip"
+                (click)="showAddUserForm()">Add Employee </button>
+</div>  
+</div> 
+
+<!-- <form *ngIf="userForm">
+  <h2>Add New Team</h2>
+  <p>Team: <input type="text" 
+                         name="Team"
+                         [(ngModel)]="newUser.Team" /></p>
+   <p>Name: <input type="text"
+                               name="name"
+                               [(ngModel)]="newUser.name" /></p> 
+  <p>
+    <button type="button"
+                 class="btn btn-primary"
+                 (click)="saveUser(newTeam)">Submit</button>
+    <button type="button"
+                 class="btn btn-warning"
+                 (click)="cancelNewUser()">Cancel</button> 
+  </p>
+ </form> -->
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onClear()">Close</button>
+          <button type="button" class="btn btn-primary" [disabled]="!noneSelected()" (click)="onSubmit()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
