@@ -66,11 +66,12 @@ constructor(myElement: ElementRef) {
    else{
         this.filteredList = [];
     }
+  console.log(this.filteredList);
 }
  
 select(item){
-    this.query = item;
-    console.log(JSON.stringify(item));
+    this.query = item.Team;
+    console.log(JSON.stringify(item.Team));
     this.filteredList = [];
     this.EmpList = item.employees;
     console.log(JSON.stringify(this.EmpList))
