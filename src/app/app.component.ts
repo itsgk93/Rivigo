@@ -28,19 +28,19 @@ constructor(  ) {
   {   
   this.nameList= [    
     {    
-      "Team": 'Engineering',    
+      Team: 'Engineering',    
       employees: ['Lawana Fan', 'Larry Rainer', 'Aman Juneja', 'Leah Shumway']
     },    
     {    
-      "Team": 'Executive',    
+      Team: 'Executive',    
       employees: ['Rohan Gupta', 'Ronda Dean', 'Robby Maharaj'] 
     },
     {    
-      "Team": 'Finance',    
+      Team: 'Finance',    
       employees:  ['Caleb Brown', 'Carol Smithson', 'Carl Sorensen']    
     },
     {    
-      "Team": 'Sales',    
+      Team: 'Sales',    
       employees: ['Ankit Tiwari','Ramesh Kumar']    
     }  
   ]    
@@ -88,9 +88,11 @@ constructor(  ) {
     this.isNewTeam=true;
 
   }
-  saveTeam=function(){
+  saveTeam=function(newTeam){
     if(this.isNewTeam){
       //add a new user
+      this.nameList.push({ Team : newTeam.Team , employees:[] });
+      console.log(newTeam.Team);
       alert("New Team is added");
     }
     this.userForm=false;
@@ -109,10 +111,14 @@ constructor(  ) {
     this.isNewEmp=true;
 
   }
-  saveEmp=function(){
+  saveEmp=function(newEmp){
     if(this.isNewEmp){
       //add a new user
-      alert("New Employee is added");
+     // this.nameList["Team"]=[this.teamId];
+      console.log(this.teamId);
+      console.log(newEmp.Emp);
+     // this.nameList[""].push({ Team: this.teamId, employees : newEmp.Emp });
+     // alert("New Employee is added");
     }
     this.empForm=false;
   }
