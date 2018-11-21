@@ -1,4 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
+import { isNgTemplate } from '@angular/compiler';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ public empId: any;
 public query = '';
 public query2 = '';
 newTeam:any={};
-newEmp:any={};
+public newEmp = "";
 teamForm:boolean=false;
 empForm:boolean=false;
 isNewTeam:boolean;
@@ -82,22 +83,23 @@ select(item){
     
     if (this.query2 !== ""){
           this.filteredList2 = this.EmpList.filter(function(el){
-          //return !this.query || (el ? ('' + el).toLowerCase().indexOf(this.query) > -1 : false);
          return (el.toLowerCase().substr(0, this.query2.length) ==
            this.query2.toLowerCase()) == true;
-            //return el.toLowerCase().search(this.query.toLowerCase()) > -1;
         }.bind(this));
         
     }else{
         this.filteredList2 = [];
     }
+    
+    
     } 
  
   select2(item2){
     this.query2 = item2;
     console.log(item2);
     this.filteredList2 = [];
-    this.isEmpSelected=true;    
+    this.isEmpSelected=true;   
+
 }
   
   noneSelected(){
@@ -109,15 +111,15 @@ select(item){
   onSubmit()
   {
     if (this.isEmpSelected && this.isTeamSelected) {
-      alert("Selected Team is "+this.teamId.Team+ " and Selected Employee is "+ this.empId);
+      alert("Selected Team is "+this.query+ " and Selected Employee is "+ this.query2);
     } else {
       alert("Please select Team and its Employee");
     }
      
   }
   onClear(){
-    this.teamId = "";
-    this.empId= "";
+    this.query = "";
+    this.query2= "";
     this.isEmpSelected=!this.isEmpSelected;
     this.isTeamSelected=!this.isTeamSelected;
   }
@@ -130,14 +132,12 @@ select(item){
   }
   saveTeam=function(newTeam){
     if(this.isNewTeam){
-      //add a new user
       this.nameList.push({ Team : newTeam.Team , employees:[] });
       console.log(newTeam.Team);
-      console.log(JSON.stringify(this.nameList));
-      alert("New Team is added");
-      console.log(JSON.stringify(this.teams))
+      alert("New Team "+newTeam.Team+" is added");
+      
     }
-    this.userForm=false;
+    this.teamForm=false;
   }
   cancelNewTeam(){
     this.newTeam={};
@@ -149,17 +149,21 @@ select(item){
     this.isNewEmp=true;
 
   }
-  saveEmp=function(newEmp){
+  saveEmp(newEmp){
     if(this.isNewEmp){
-      console.log(this.teamId);
-      console.log(newEmp.Emp);
-     // this.nameList[""].push({ Team: this.teamId, employees : newEmp.Emp });
-     // alert("New Employee is added");
+      console.log(this.query);
+      console.log(newEmp);
+       this.nameList.forEach(element => {
+        if(element.Team==this.query){
+           element.employees.push(newEmp)
+        }
+       });
     }
     this.empForm=false;
+    console.log(">>>>",JSON.stringify(this.nameList));
   }
   cancelNewEmp(){
-    this.newEmp={};
+    this.newEmp= "";
     this.empForm=false;
   }
   }  
