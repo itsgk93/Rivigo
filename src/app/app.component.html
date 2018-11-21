@@ -20,7 +20,7 @@
                       <input id="teams" type="text" value=" " class="validate filter-input" [(ngModel)]=query (keyup)=filter()>
                     
                     <div *ngIf="filteredList.length > 0">
-                        <ul *ngFor="let item of filteredList" type="None" >
+                        <ul class="ul" *ngFor="let item of filteredList" type="None" >
                             <li >
                               
                                 <p (click)="select(item)">{{item.Team}}</p>
